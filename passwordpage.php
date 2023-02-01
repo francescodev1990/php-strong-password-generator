@@ -1,6 +1,10 @@
 <?php
-
-
+include __DIR__ . "/funzione.php";
+session_start();
+$_SESSION['pass'] = $_POST['pass'];
+if (empty($_SESSION['pass'])) {
+    header("Location:./index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,16 +27,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="./passwordpage.php" method="POST">
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Inserisci Password">
-                        </div>
-                        <div class="btn-submit">
-                            <button>Submit</button>
-                        </div>
-
-                    </form>
+                    <p>
+                        <?php echo password($_POST['pass']); ?>
+                    </p>
+                    <p>
+                        password lenght: <?php echo strlen($_POST['pass']); ?>
+                    </p>
+                    <form action="./index.php"></form>
+                    <button>Vai alla pagina precedente!</button>
 
                 </div>
 
